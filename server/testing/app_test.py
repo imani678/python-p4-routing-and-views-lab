@@ -51,19 +51,20 @@ class TestApp:
         assert(response.status_code == 200)
 
     def test_math_add(self):
-        '''adds parameters in "/math/" resource when operation is "+".'''
-        response = app.test_client().get('/math/5/+/5')
-        assert(response.data.decode() == '10')
+       '''adds parameters in "/math/" resource when operation is "+".'''
+       response = app.test_client().get('/math/5/+/5')
+       assert response.status_code == 200
+       assert response.data.decode() == '10.0'
 
     def test_math_subtract(self):
         '''subtracts parameters in "/math/" resource when operation is "-".'''
         response = app.test_client().get('/math/5/-/5')
-        assert(response.data.decode() == '0')
+        assert(response.data.decode() == '0.0')
 
     def test_math_multiply(self):
         '''multiplies parameters in "/math/" resource when operation is "*".'''
         response = app.test_client().get('/math/5/*/5')
-        assert(response.data.decode() == '25')
+        assert(response.data.decode() == '25.0')
 
     def test_math_divide(self):
         '''divides parameters in "/math/" resource when operation is "div".'''
@@ -73,4 +74,4 @@ class TestApp:
     def test_math_modulo(self):
         '''finds remainder of parameters in "/math/" resource when operation is "%".'''
         response = app.test_client().get('/math/5/%/5')
-        assert(response.data.decode() == '0')
+        assert(response.data.decode() == '0.0')
